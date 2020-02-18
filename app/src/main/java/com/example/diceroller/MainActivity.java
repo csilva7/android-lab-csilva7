@@ -49,17 +49,22 @@ public class MainActivity<rollTheDiceButton> extends AppCompatActivity {
         });
 
     }
-
-        public void on_button_click(View v) {
-            TextView randomNumber;
-            randomNumber = (TextView) findViewById(R.id.randomNumberTextView);
+        public void roll_the_dice (){
+            TextView randomNumber = (TextView) findViewById(R.id.randomNumberTextView);
+            //randomNumber = (TextView) findViewById(R.id.randomNumberTextView);
             Random r = new Random();
             int min = 1;
             int max = 6;
             int number = r.nextInt((max - min) + 1) + min;
             randomNumber.setText(Integer.toString(number));
-            TextView congratsMessage;
-            congratsMessage = (TextView) findViewById(R.id.congratulationsTextView);
+        }
+
+        public void on_button_click(View v) {
+
+            roll_the_dice();
+            TextView stringNumber = (TextView) findViewById(R.id.randomNumberTextView);
+            int number = Integer.valueOf(stringNumber.getText().toString());
+            TextView congratsMessage = (TextView) findViewById(R.id.congratulationsTextView);
             if (UserNumber == number) {
                 congratsMessage.setText("Congratulations!");
                 Score = Score + 1;
@@ -70,5 +75,40 @@ public class MainActivity<rollTheDiceButton> extends AppCompatActivity {
             } else {
                 congratsMessage.setText("Unlucky :(");
             }
+
+
+        }
+
+        public void iceBreakers(View view) {
+        roll_the_dice();
+        TextView stringNumber = (TextView) findViewById(R.id.randomNumberTextView);
+        int number = Integer.valueOf(stringNumber.getText().toString());
+        TextView icebreakerQuestion = (TextView) findViewById(R.id.randomQuestionTextView);
+        if(number == 1)
+        {
+            icebreakerQuestion.setText("If you could go anywhere in the world, where would you go?");
+        }
+        else if(number == 2)
+        {
+            icebreakerQuestion.setText("If you were stranded on a desert island, what three things would you want to take with you?");
+        }
+        else if(number == 3)
+        {
+            icebreakerQuestion.setText("If you could eat only one food for the rest of your life, what would that be?");
+        }
+        else if(number == 4)
+        {
+            icebreakerQuestion.setText("If you won a million dollars, what is the first thing you would buy?");
+        }
+        else if(number == 5)
+        {
+            icebreakerQuestion.setText("If you could spaned the day with one fictional character, who would it be?");
+        }
+        else if (number == 6)
+        {
+            icebreakerQuestion.setText("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
+        }
+
+
         }
 }
